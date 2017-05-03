@@ -18,7 +18,7 @@ const join = require('path').join;
 const resolve = require('path').resolve;
 const webpack = require('webpack');
 
-var debug = process.env.NODE_ENV !== "production";
+let debug = process.env.NODE_ENV !== "production";
 
 /*
  // PATHS defines an object that will reference appropriate directories
@@ -32,10 +32,7 @@ const PATHS = {
     fonts: join(__dirname, 'fonts'),
     build: join(__dirname,'dist')
 };
-<<<<<<< HEAD
 
-=======
->>>>>>> eapostol/master
 console.log("***** DIRECTORY : \n" + __dirname);
 console.log("***** PATHS : \n");
 console.log(PATHS);
@@ -66,33 +63,30 @@ module.exports = {
     },
     output: {
 <<<<<<< HEAD
-        filename: 'index.min.js'
-        path: resolve(_dirname,'dist'),
-        publicPath: "/js/"
+        path: PATHS.build,
+        filename: './dist/index.min.js'
 =======
         filename: 'index.min.js',
-        path: resolve(__dirname,'dist'),
+        path: resolve(PATHS.build),
         publicPath: "/js/"
-
->>>>>>> eapostol/master
+>>>>>>> 18809c442b9f9eae234babd1917560286111d077
     },
     module: {
         loaders: [
             {
+<<<<<<< HEAD
             test: /\.css$/,
             loaders: ['style', 'css'],
             include: PATHS.src
-<<<<<<< HEAD
         }, {
             test: /\.js$/,
-            loader: 'babel-loader?presents[]=es2015',
-            query: {
-                presents:['es2015']
-            }
+            loader: 'babel-loader',
             include: PATHS.src,
             exclude: ['./node_modules/','webpack.config.js']
         }, {
 =======
+                test: /\.(sass|scss)$/,
+                loaders: 'style-loader!css-loader!sass-loader'
             },
             {
                 test: /\.js$/,
@@ -104,17 +98,14 @@ module.exports = {
                 exclude: ['./node_modules/','webpack.config.js']
             },
             {
->>>>>>> eapostol/master
+>>>>>>> 18809c442b9f9eae234babd1917560286111d077
             test: /\.(eot|svg|ttf|woff|woff2)$/,
             include : PATHS.fonts,
             loader: `file?name=/fonts/[name].[ext]`
-        }]
+        }
+        ]
     },
-<<<<<<< HEAD
-    devtool:  'source-map',
-=======
-    devtool: 'source-map',
->>>>>>> eapostol/master
+    devtool: debug ? "inline-source-map" : false,
     devServer: {
         contentBase: process.cwd(),
         historyApiFallback: true,

@@ -1,17 +1,12 @@
-/**
- * Created by Edward_J_Apostol on 2017-04-28.
- */
-
 export default class App {
     constructor()
     {
-        console.log("hello from App");
 <<<<<<< HEAD
+        console.log("hello from App");
         console.log("hjsdfbjahsdfvj");
         console.log("cjhbfahsjdfgasgf");
 =======
-        console.log("sdfdsfdsfdsf");
-        console.log("sdfdsfdsffssdfdsfsdf");
->>>>>>> eapostol/master
+        console.log("Hello World from the App");
+>>>>>>> 18809c442b9f9eae234babd1917560286111d077
     }
 }

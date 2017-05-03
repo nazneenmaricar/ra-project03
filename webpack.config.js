@@ -18,7 +18,7 @@ const join = require('path').join;
 const resolve = require('path').resolve;
 const webpack = require('webpack');
 
-var debug = process.env.NODE_ENV !== "production";
+let debug = process.env.NODE_ENV !== "production";
 
 /*
  // PATHS defines an object that will reference appropriate directories
@@ -62,25 +62,31 @@ module.exports = {
         extensions: ['.js']
     },
     output: {
-        path: PATHS.build,
-        filename: './dist/index.min.js'
+        filename: 'index.min.js',
+        path: resolve(PATHS.build),
+        publicPath: "/js/"
     },
     module: {
         loaders: [
             {
-            test: /\.css$/,
-            loaders: ['style', 'css'],
-            include: PATHS.src
-        }, {
-            test: /\.js$/,
-            loader: 'babel-loader',
-            include: PATHS.src,
-            exclude: ['./node_modules/','webpack.config.js']
-        }, {
+                test: /\.(sass|scss)$/,
+                loaders: 'style-loader!css-loader!sass-loader'
+            },
+            {
+                test: /\.js$/,
+                loader: 'babel-loader?presets[]=es2015',
+                query: {
+                    presets: ['es2015']
+                },
+                include: PATHS.src,
+                exclude: ['./node_modules/','webpack.config.js']
+            },
+            {
             test: /\.(eot|svg|ttf|woff|woff2)$/,
             include : PATHS.fonts,
             loader: `file?name=/fonts/[name].[ext]`
-        }]
+        }
+        ]
     },
     devtool: debug ? "inline-source-map" : false,
     devServer: {
