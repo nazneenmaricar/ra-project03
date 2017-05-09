@@ -56,7 +56,7 @@ console.log(PATHS);
 
 module.exports = {
     entry: {
-        src: join(PATHS.src, 'index.js')
+        src: join(PATHS.src, './index.js')
     },
     resolve: {
         extensions: ['.js']
@@ -85,10 +85,11 @@ module.exports = {
             test: /\.(eot|svg|ttf|woff|woff2)$/,
             include : PATHS.fonts,
             loader: `file?name=/fonts/[name].[ext]`
-        }
+        },
+        { test: /\.(png|jpg|svg|jpeg|gif)$/, loader: "url-loader?limit=100000" }
         ]
     },
-    devtool: debug ? "inline-source-map" : false,
+    devtool: 'source-map',
     devServer: {
         contentBase: process.cwd(),
         historyApiFallback: true,

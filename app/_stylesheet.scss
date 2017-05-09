@@ -1,0 +1,304 @@
+* {box-sizing: border-box;
+   padding: 0;
+   margin: 0;}
+
+
+                /*Flex*/
+
+.flex {display: flex;}
+.just-cont-cent {justify-content: center;}
+.just-cont-between {justify-content: space-between;}
+.just-space-around {justify-content: space-around;}
+.align-item-cent {align-items: center;}
+.flex-end {align-content: flex-end;}
+.dir-col {flex-direction: column;}
+.dir-row {flex-direction: row;}
+.align-cont-cent {align-content: center;}
+.flex-grow-1 {flex-grow: 1;}
+
+                    /*GENERAL STYLING*/
+
+.border-bottom-10px {border-bottom: 1px solid #d7d7d7;}
+      /*MARGIN*/
+.margin-bottom-2px {margin-bottom: 2px;}
+.margine-right-2px {margin-right: 2px;}
+      /*PADDING*/
+.padding-right-5px {padding-right:5px; }
+.padding-10px {padding:10px;}
+.padding-30px {padding: 30px;}
+.padding-50px {padding: 50px;}
+.bottom-padding-30px {padding-bottom: 30px;}
+.bottom-padding-10px {padding-bottom: 10px;}
+.bottom-padding-50px {padding-bottom: 50px;}
+      /*FONT*/
+.font-size-5em {font-size: 5em;}
+.font-size-3em {font-size: 3em;}
+.font-size-1em {font-size: 1em;}
+.line-height { line-height: 1em;}
+      /*TEXT*/
+.text-green {color: #006400;}
+.text-grey {color: #969696;}
+.text-white {color: white;}
+.text-orange {color: #e2574c;}
+.text-center {text-align: center;}
+      /*DISPLAY*/
+.display-none {display: none;}
+.display-block {display: block;}
+.width-100 {width: 100%;}
+
+/* LOGO, NAV BAR AND SHOOPING CART*/
+
+header{position: fixed;
+       width: 100%;
+       background-color: white;
+       z-index: 1000;}
+
+header div ul li a {color: #e2574c; }
+
+li {display: inline;}
+
+ul a {text-decoration: none;}
+
+.logo {
+       height: 10vh;
+       width: 15vh;
+       position: relative;
+       left: 10px;}
+
+.cart-icon {
+            height: 10vh;
+            width: 10vh;
+            position: relative;
+            right: 10px;}
+
+.cart-qty { background-color: green;
+            border-radius: 100%;
+            height: 20px;
+          width: 20px;}
+
+/*BACKGROUND AND FOREGROUND IMAGE AND TEXT*/
+
+.main { position: relative;
+        top: 10vh;}
+
+.banner-image {
+                background-image: linear-gradient( rgba(0,0,0,0.2),rgba(0,0,0,0.3)), url("./images/banner.jpg");
+                height: 50vh;
+                background-position: center;
+                background-size:cover;
+                background-repeat: no-repeat;}
+
+
+/* ABOUT THE COMPANY*/
+.click { background: none;
+         border: 1px solid 	#006400;
+         color: white;
+         padding: 10px 15px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 10px;
+         margin: 4px 2px;
+         cursor: pointer;}
+
+/* CATEGORY*/
+
+.laptop-cat {
+  background-image: linear-gradient( rgba(0,0,0,0.2),rgba(0,0,0,0.3)), url("./images/laptop-category.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 30vh;
+}
+
+.tv-cat {
+  background-image: url("./images/tv-category.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 30vh;
+}
+
+.audio-cat {
+  background-image: url("./images/home-audio-category.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 30vh;
+}
+
+.tablet-cat {
+  background-image: url("./images/tablet-category.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 30vh;
+}
+
+.desktop-cat {
+  background-image: url("./images/desktop-category.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 30vh;
+}
+
+.cellphone-cat {
+  background-image: url("./images/cell-category.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 30vh;
+}
+
+
+        /* SHOPPING*/
+
+.carousel-cell {width:100%;
+                display: block;
+                text-align: center;}
+
+
+/*QUICK VIEW SECTION (INVISIBLE)*/
+
+#modal {display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        //background-color: white;
+        background-color: rgba(0,0,0,0.4);
+        }
+
+#quickView{ background-color: white;
+            width: 300px;
+            height: auto;
+            overflow: scroll;
+            position: absolute;
+            right: 50%;
+            top: 200px;}
+
+#cartview { background-color: white;
+            width: 300px;
+            height: auto;
+            overflow: scroll;
+            position: absolute;
+            right: 50%;
+            top: 200px;}
+/* SIGN UP FOR UPDATES  (FORM AND BUTTON)*/
+
+.signup-img {background-color: 	#006400;}
+
+form {width: 35%;
+     background-color:white;
+     padding: 2px;
+     margin: auto;}
+
+.emailfield {padding-left: 10px;
+             color: #969696;
+             width: 75%;
+             border-style: none;
+             height: 20px;}
+
+.button {color: white;
+         background-color: #006400;
+         height: 20px;
+         border-style: none;
+         width: 23%;}
+
+.click { background: none;
+         border: 1px solid 	#006400;
+         color: white;
+         padding: 10px 15px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 10px;
+         margin: 4px 2px;
+         cursor: pointer;}
+
+
+            /* ADDRESS AND SOCIAL MEDIA*/
+
+.footer {background: #242424;
+         border-top: 5px solid white;}
+
+.fa {color: white;}
+
+/* fonts for the web page */
+
+// @font-face {font-family: "PlayfairDisplay-Bold";
+//            src: url("./assets/fonts/PlayfairDisplay-Bold.otf");}
+//
+//
+// @font-face {font-family: "PlayfairDisplay-Italic";
+//            src: url("./assets/fonts/PlayfairDisplay-Italic.otf");}
+//
+// @font-face {font-family: "PlayfairDisplay-Regular";
+//            src: url("./assets/fonts/PlayfairDisplay-Regular.otf");}
+//
+// @font-face {font-family: "Raleway-Light";
+//            src: url("./assets/fonts/Raleway-Light.ttf");}
+//
+// @font-face {font-family: "Raleway-Medium";
+//            src: url("./assets/fonts/Raleway-Medium.ttf");}
+//
+//       /*FONT CLASS*/
+// .rale-medium {font-family: "Raleway-Medium";}
+// .rale-light {font-family: "Raleway-Light";}
+// .playfair-italic {font-family: "PlayfairDisplay-Italic";}
+// .playfair-bold {font-family: "PlayfairDisplay-Bold";}
+// .playfair-regular {font-family: "PlayfairDisplay-Regular"}
+
+
+/* Media setting for the mobile  (min-width being 600px) */
+
+@media screen and (max-device-width: 600px) {
+
+.display-none-mobile {display: none;}
+.font-size-mobile{font-size: 16px;}
+
+}
+/* Media setting for the tabet  (min-width being 600px) */
+
+@media screen and (min-device-width: 600px) {
+
+      /*FLEX*/
+.flex-tablet {display: flex;}
+.dir-col-tablet {flex-direction: column;;}
+.dir-row-tablet {flex-direction: row;}
+.just-cont-between-tablet {justify-content: space-between;}
+.flex-grow-1-tablet {flex-grow: 1;}
+
+      /*GENERAL STYLING*/
+.margine-left-2px-tablet {margin-left: 2px;}
+.margine-right-2px-tablet {margin-right: 2px;}
+.carousel-cell-tablet {width:50%;}
+.width-50-tablet {width: 50%;}
+.display-none-tablet {display: none;}
+.text-align-left-desktop {text-align: left;}
+.padding-5px-tablet { padding: 5px;}
+.padding-right-50px-tablet {padding-right: 50px;}
+.font-size-tablet{font-size: 16px;}
+}
+
+/* Media setting for the desktop  (min-width being 1240px) */
+
+@media screen and (min-device-width: 1240px) {
+
+        /*FLEX*/
+.flex-desktop {display: flex;}
+.dir-col-desktop {flex-direction: column;}
+.dir-row-desktop {flex-direction: row;}
+.just-cont-between-desktop {justify-content: space-between;}
+.flex-grow-1-desktop {flex-grow: 1;}
+
+      /*GENERAL STYLING*/
+.margine-left-2px-desktop {margin-left: 2px;}
+.margine-right-2px-desktop {margin-right: 2px;}
+.carousel-cell-desktop {width:25%;}
+.width-50-desktop {width: 50%;}
+.display-none-desktop {display: none;}
+.text-align-left-desktop {text-align: left;}
+.padding-5px-desktop { padding: 5px;}
+.padding-right-50px-desktop {padding-right: 50px;}
+.font-size-desktop{font-size: 16px;}
+}
