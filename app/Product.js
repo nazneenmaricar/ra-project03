@@ -3,7 +3,7 @@
 export default class Product {
 
   constructor() {
-    //console.log("product??? displayed???");
+    //console.log("Product js");
     this.prodImage = "";
     this.prodName = "";
     this.prodManufacturer = "";

@@ -22,7 +22,7 @@ export default class App {
     this.bbService = new BestBuyService();
     //console.log(this.productList);
     this.cartView = new CartView(this.allProducts);
-    this.cart = new Cart(this.cartview);
+    this.cart = new Cart(this);
     this.quickViewView = new QuickViewView(this);
     this.quickView = new QuickView(this.quickViewView);
     this.carousel = new Carousel(this.cart,this.quickView);

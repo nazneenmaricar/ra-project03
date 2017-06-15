@@ -3,28 +3,27 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="./min.style.css" type="text/css">
+  <link rel="stylesheet" href="../dist/min.style.css" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="./index.min.js" type="text/javascript"></script>
+  <script src="../dist/index.min.js" type="text/javascript"></script>
   <title>Best Buy</title>
 </head>
 
 <body>
-
   <!-- LOGO, NAV BAR AND SHOPPING CART-->
   <container class="flex dir-col">
     <header class="flex dir-col">
 
       <!--NAV BAR DISPLAYED ON MOBILE-->
 
-      <div class="flex just-cont-between border-bottom-10px padding-10px display-none-tablet display-none-desktop">
+      <div class="flex just-cont-between border-bottom padding-10px display-none-tablet display-none-desktop">
         <img src="./images/aloha-logo.svg" alt="Aloha logo" class="logo">
         <img src="./images/cart-icon.svg" alt="Cart icon" class="cart-icons">
       </div>
 
       <div class="flex just-cont-cent dir-col padding-30px display-none-tablet display-none-desktop">
         <ul class="flex just-space-around text-orange padding-10px">
-          <li><a href="#about" class="">ABOUT</a></li>
+          <li><a href="#about">ABOUT</a></li>
           <li><a href="#shop">SHOP</a></li>
           <li><a href="#featured">FEATURED</a></li>
           <li><a href="#updates">UPDATES</a></li>
@@ -80,32 +79,32 @@
 
       <!--CATEGORY-->
 
-      <section class="text-white font-size-3em rale-medium" id="shop">
+      <section class="text-white font-size-3em rale-medium font-size-cell-desktop" id="shop">
         <div class="flex dir-col dir-row-desktop dir-row-tablet">
           <div class="laptop-cat flex flex-grow-1 margin-bottom-2px just-cont-cent align-item-cent width-50-desktop width-50-tablet margine-right-2px-desktop margine-right-2px-tablet">
             <p> LAPTOPS/ULTRABOOKS </p>
           </div>
 
           <div class="flex margin-bottom-2px flex-grow-1-desktop flex-grow-1-tablet width-50-desktop width-50-tablet">
-            <div class="tv-cat flex-grow-1 margine-right-2px flex just-cont-cent align-item-cent">
+            <div class="tv-cat flex-grow-1 margine-right-2px flex just-cont-cent align-item-cent width-50">
               <p> 4K TVS
                 <p>
             </div>
 
-            <div class="audio-cat flex  flex-grow-1 just-cont-cent align-item-cent">
-              <p> HOMe AUDIO </p>
+            <div class="audio-cat flex  flex-grow-1 just-cont-cent align-item-cent width-50">
+              <p> HOME AUDIO </p>
             </div>
           </div>
         </div>
 
         <div class="flex dir-col text-center just-cont-cent dir-row-desktop dir-row-tablet">
           <div class=" flex margin-bottom-2px flex-grow-1-desktop flex-grow-1-tablet width-50-desktop width-50-tablet">
-            <div class="tablet-cat margine-right-2px flex-grow-1 flex just-cont-cent align-item-cent">
+            <div class="tablet-cat margine-right-2px flex-grow-1 flex just-cont-cent align-item-cent width-50">
               <p> TABLETS
                 <p>
             </div>
 
-            <div class="desktop-cat flex flex-grow-1 just-cont-cent align-item-cent margine-right-2px-desktop margine-right-2px-tablet">
+            <div class="desktop-cat flex flex-grow-1 just-cont-cent align-item-cent margine-right-2px-desktop margine-right-2px-tablet width-50">
               <p> DESKTOPS </p>
             </div>
           </div>
@@ -118,47 +117,48 @@
 
       <!--QUICK VIEW SECTION (INVISIBLE)-->
 
-      <!-- <section class="modal">
-        <div id="quickview">
-          <img id="quickview-image">
-          <p class="quickview-name"></p>
-          <p class="quickview-manufacturer"></p>
-          <p class="quickview-price"></p>
-          <div class="quickview-button"></div>
-        </div>
-      </section> -->
+      <!--quick View-->
+      <section id="qv-modal">
+        <div id="quickview" class="padding-20px">
+          <div  class="flex border-bottom ">
+            <div class="flex-grow-1 width-50">
+                <img id="quickview-image">
+            </div>
+            <div class="width-50 padding-20px">
+              <p id="quickview-close"></p>
+              <p id="quickview-manufacturer"></p>
+              <p id="quickview-price" ></p>
+              <p id="quickview-name"></p>
+              <!-- <p id="quickview-button"> quickview button </p> -->
+              <div id="quickview-button"></div>
+            </div>
+          </div>
+            <h2> ABOUT THIS VERY PRETTY PAPER WEIGHT </h2> <br>
+            <p id="quickview-description"></p>
+          </div>
+      </section>
 
-      <!--Cart view andquick View-->
-      <section id="modal" class="flex just-cont-cent align-item-cent">
-        <div id="quickview" class="flex dir-col padding-30px">
-          <div class="flex">
-            <p id="quickview-close">Close </p>
-            <img id="quickview-image">
-            <p id="quickview-price">$</p>
-            <p id="quickview-manufacturer"></p>
-            <p id="quickview-name"></p>
-            <div id="quickview-button"></div>
+      <!-- cart-view -->
+
+      <section id="cv-modal">
+        <div id="cartview" class="padding-20px">
+          <h2> Your Cart </h2>
+          <p id="cv-close"> Close(x)</p>
+          <div>
+            <button type="button" name="checkout button" id="button-checkout">Check Out</button>
+            <button type="button" name="empty button" id="cv-empty">Empty</button>
           </div>
         </div>
-      </section>
-
-      <section id="modal" class="flex just-cont-cent align-item-cent">
-        <div id="cartview" class="flex dir-col padding-30px">
-          <p id="cartview-close"></p>
-          <p id="cartview-empty"></p>
-          <div id="cartview-button"></div>
-        </div>
-      </section>
-
-
+          </section>
 
       <!--PRODUCTS CAROUSEL-->
 
-      <section id="prodcell" class=" flex dir-col padding-30px bottom-padding-50px">
+      <section id="prodcell" class=" flex dir-col padding-30px bottom-padding-50px ">
         <div id="featured" class="flex dir-row just-cont-cent bottom-padding-30px font-size-3em">
           <p class="playfair-regular padding-right-5px"> You Like Stuff </p>
           <p class="playfair-regular text-grey"> We got Stuff </p>
-        </div>
+          <!-- <div class="main-carousel" data-flickity='{ "wrapAround": true }'>
+  			</div> -->
       </section>
 
       <!--SIGN UP FOR UPDATES SECTION-->

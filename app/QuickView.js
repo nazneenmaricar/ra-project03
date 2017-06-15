@@ -1,15 +1,14 @@
-// import App from './App';
 import QuickViewView from './QuickViewView';
 
 export default class QuickView {
   constructor(quickViewView) {
     this.quickViewView = quickViewView;
-    //console.log("QuickView yaaay!!!!");
+    //console.log("QuickView js");
   }
 
   getSku(sku) {
-    this.quickViewView.usethistomatchproductsku(sku);
-    console.log(sku);
     /*carousel to quick view view*/
+    this.quickViewView.matchItemSku(sku);
+    //console.log(sku);
   }
 }

@@ -3,89 +3,138 @@ import AllProducts from './AllProducts';
 
 export default class CartView {
   constructor(allProducts) {
-    console.log("CartView!!!! viewed???");
+    //console.log("CartView js");
     this.allProducts = allProducts;
   }
-  // updateLittleCartIcon(qty){
-  //     document.getElementById("numItemsParagraph").innerHTML = qty;
-  //   }
 
   onClickOpenCartView(e) {
     let allProducts = this.products;
+    /*the skus of the items that are added to the cart are held by session storage as keys and the each Sku quantity as values*/
     let ss = window.sessionStorage;
-    //console.log("Display view ss");
-    //console.log(ss);
-    document.getElementById("cartview-view").style.display = "block";
+    console.log(ss);
+    console.log(this);
+    /*cart view dialogue box*/
+    document.getElementById("cv-modal").style.display = "block";
     document.getElementById("cartview").style.display = "block";
-    document.getElementById("cartview-close").addEventListener("click", this.viewCart.onClickCloseCart, false);
-    document.getElementById("cartview-empty").addEventListener("click", this.viewCart.onClickEmptyCart.bind(ss), false);
+    document.getElementById("cv-close").addEventListener("click", this.viewCart.onClickCloseCartView, false);
+    document.getElementById("cv-empty").addEventListener("click", this.viewCart.onClickEmptyCart.bind(ss), false);
     document.getElementById("button-checkout").addEventListener("click", this.viewCart.onClickCheckoutCart, false);
-
-    var skuInSessionStorage = function(products, sku) {
+    /*gets the respective product by taking each products sku which is in session storage*/
+    let skuInSessionStorage = function(products, sku) {
       if (products) {
-        for (var i = 0; i < products.length; i++) {
+        for (let i = 0; i < products.length; i++) {
           if (products[i].sku == sku) {
             return products[i];
           }
-          var inSessionStorage = skuInSessionStorage (products[i], sku);
-          if (inSessionStorage) return inSessionStorage;
+          let inSession = skuInSessionStorage (products[i], sku);
+          if (inSession) return inSession;
         }
       }
     };
-    for (var i= 0; i< ss.length; i++) {
-      let skuKey = ss.key(i);
-      let skuQty = ss.getItem(i);
-      let itemSku = skuInSessionStorage(allTheProducts, skuKey);
-      this.viewCart.createItem (prodimage, prodname, prodmanufacturer, prodsalePrice, prodsku)
+    console.log(ss.length);
+    for (let a= 0; a< ss.length; a++) {
+      let skuKey = ss.key(a);
+      //console.log(skuKey);
+      let skuQty = ss.getItem(ss.key(a));
+      /*matched products are taken and its inforamtion are rendered in cart view*/
+      //console.log(allProducts);
+      let itemSku = skuInSessionStorage(allProducts, skuKey);
+      console.log("sku");
+      this.viewCart.createCartItem(itemSku.image, itemSku.name, itemSku.manufacturer, itemSku.salePrice, itemSku.sku, ss, skuQty)
     }
   }
 
-createCartView(image, name, manufacturer, salePrice, sku) {
-  document.getElementById("modal").style.display = "block";
-  document.getElementById("cartview").style.display = "block";
-  let closeCart = document.getElementById("cartview-close").appendChild(document.createTextNode("close"));
-  document.getElementById("cartview-close").addEventListener("click", this.onClickCloseQuickView, false);
+createCartItem(prodImage, prodName, prodManufacturer, prodSalePrice, prodSku, ss, skuQty) {
+  /*Creating the elements and products in the cart are displayed in row formate*/
+  console.log("CREATE CART ITEM");
+  let cartDiv = document.createElement("div");
+  cartDiv.setAttribute("class","cart-flex");
+  let cartImage = this.creatCartImage(prodImage);
+  cartDiv.appendChild(cartImage);
 
-  let imageCartView = document.getElementById("cartview-image").setAttribute("src", image);
+  let infoDiv = document.createElement("div");
+  infoDiv.setAttribute("class","info-flex");
+  let cartManu = this.creatCartManu(prodManufacturer);
+  infoDiv.appendChild(cartManu);
+  let cartPrice = this.creatCartPrice(prodSalePrice, skuQty);
+  infoDiv.appendChild(cartPrice);
+  cartDiv.appendChild(infoDiv)
 
-  let nameCartView = document.getElementById("cartview-name").appendChild(document.createTextNode(name));
+  let buttonDiv = document.createElement("div");
+  buttonDiv.setAttribute("class","button-flex");
+  let updateButton = this.createUpdateButton(prodSku, ss);
+  buttonDiv.appendChild(updateButton);
+  let removeButton = this.createRemoveButton(prodSku, ss);
+  buttonDiv.appendChild(removeButton);
+  cartDiv.appendChild(buttonDiv);
 
-  let manufacturerCartView = document.getElementById("cartview-manufacturer").appendChild(document.createTextNode(manufacturer));
-
-  let priceCartView = document.getElementById("cartview-price").appendChild(document.createTextNode(price));
-
-  let newButton = this.createButton(sku);
-  document.getElementById("cartview-button").appendChild(newButton);
+  /*appending the cartdiv to cartview id in html*/
+  document.getElementById("cartview").appendChild(cartDiv);
 }
 
-createUpdateItemToCart(sku) {
-  let newUpdateItem = document.createElement("button");
-  newUpdate.setAttribute("type", "button");
-  newUpdate.setAttribute("data-sku", sku);
-  // newUpdate.setAttribute(""); //style
-  // newUpdate.setAttribute(""); //style
-  newUpdate.appendChild(document.createTextNode("Update"));
-  newUpdate.addEventListener("click", this.onClickUpdateToCart.bind(ths), false);
-  return newUpdate;
+creatCartImage(prodImage){
+  let newCartImage = document.createElement("img");
+  newCartImage.setAttribute("src", prodImage);
+  newCartImage.setAttribute("alt", `${name} image`);
+  newCartImage.setAttribute("class"," cv-image");
+  return newCartImage;
 }
 
-createRemoveItemFromCart(sku) {
-  let newRemoveItem = document.createElement("button");
-  newRemoveItem.setAttribute("type", "button");
-  newRemoveItem.setAttribute("data-sku", sku);
-  // newRemoveItem.setAttribute(""); //style
-  // newRemoveItem.setAttribute(""); //style
-  newRemoveItem.appendChild(document.createTextNode("Remove"));
-  newUpdate.addEventListener("click", this.onClickRemoveItemFromCart.bind(ths), false);
-  return newRemoveItem;
+creatCartManu(prodManufacturer){
+  let newCartManu = document.createElement("p");
+  newCartManu.setAttribute("class","cv-manu");
+  let newTextContent = document.createTextNode(`${prodManufacturer}`);
+  newCartManu.appendChild(newTextContent);
+  return newCartManu;
 }
+
+creatCartPrice(prodSalePrice, skuQty){
+  let newCartPrice = document.createElement("p");
+  newCartPrice.setAttribute("class","cv-price");
+  let newPriceContent = document.createTextNode(`${prodSalePrice}, ${skuQty}`);
+  newCartPrice.appendChild(newPriceContent);
+  return newCartPrice;
+}
+
+createUpdateButton(sku, ss){
+  let newUpdateButton = document.createElement("button");
+  newUpdateButton.setAttribute("type","button");
+  newUpdateButton.setAttribute("data-sku", sku);
+  newUpdateButton.setAttribute("class","cv-button");
+  newUpdateButton.appendChild(document.createTextNode("Update"));
+  newUpdateButton.addEventListener("click",this.onClickUpdateItem.bind(this), false);
+  return newUpdateButton;
+}
+
+createRemoveButton(sku, ss){
+  let newRemoveButton = document.createElement("button");
+  newRemoveButton.setAttribute("type","button");
+  newRemoveButton.setAttribute("data-sku", sku);
+  newRemoveButton.setAttribute("class", "cv-button");
+  newRemoveButton.appendChild(document.createTextNode("Remove"));
+  newRemoveButton.addEventListener("click",this.onClickRemoveItem.bind(this), false);
+  return newRemoveButton;
+}
+
+onClickCloseCartView(e) {
+   document.getElementById("cv-modal").style.display = "none";
+  document.getElementById("cartview").style.display = "none";
+}
+
+onClickUpdateItem(e){
+  console.log("Update");
+}
+onClickRemoveItem(e) {
+  console.log("Remove");
+}
+
 
 onClickCheckoutCart(e){
-  window.alert ("checking out");
+  window.alert ("check-out cart");
 }
 
 onClickEmptyCart(e){
-      this.clear();
-      console.log(this);
+      // this.clear();
+      console.log("empty button");
     }
 }

@@ -9,7 +9,7 @@ export default class BestBuyService {
     this.productList = new AllProducts();
     this.xhr = new XMLHttpRequest();
     this.xhr.addEventListener("readystatechange", this.processRequest.bind(this), false);
-    this.xhr.open('GET', "https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))?apiKey=SXkiDh8lcFEAqyG6rDmJjlH4&sort=name.asc&show=name,description,salePrice,sku,manufacturer,image,addToCartUrl,url&format=json", true);
+    this.xhr.open('GET', "https://api.bestbuy.com/v1/products((categoryPath.id=abcat0502000))?apiKey=SXkiDh8lcFEAqyG6rDmJjlH4&sort=name.asc&show=name,longDescription,salePrice,sku,manufacturer,image,addToCartUrl,url&format=json", true);
     this.xhr.send();
   }
   init(app) {
@@ -19,24 +19,21 @@ export default class BestBuyService {
   processRequest(e) {
     if (e.target.readyState == 4 && e.target.status == 200) {
       //console.log(e.target.responseText);
-      var result = JSON.parse(e.target.responseText);
-      //console.log(result);
-      /*prints out product list*/
+      let result = JSON.parse(e.target.responseText);
+      console.log(result); /*prints out product list*/
       this.app.allProducts = this.productList = this.contentlist(result.products);
-      //console.log(this.app.allProducts);
-      /*this prints out the product list*/
+      //console.log(this.app.allProducts);  /*this prints out the product list*/
       this.app.getData(this.app.allProducts);
-      //console.log(result.products);
-      /*this prints out the object results*/
+      // console.log(result.products); /*this prints out the object results*/
     }
   }
   contentlist(products) {
     let list = new AllProducts();
-    for (var i = 0; i < products.length; i++) {
+    for (let i = 0; i < products.length; i++) {
       let newProduct = new Product();
       newProduct.image = products[i].image;
       newProduct.name = products[i].name;
-      newProduct.description = products[i].description;
+      newProduct.longDescription = products[i].longDescription;
       newProduct.manufacturer = products[i].manufacturer;
       newProduct.salePrice = products[i].salePrice;
       newProduct.sku = products[i].sku;

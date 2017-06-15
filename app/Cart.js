@@ -7,38 +7,41 @@ export default class Cart {
     this.app = app;
     this.ss = window.sessionStorage;
 
-    //console.log("cart??? you there???");
+    //console.log("cart js ");
   }
 
   addItemToCart(sku, qty = 1) {
     //console.log("adding item to cart");
     //this.ss.setItem(sku,qty.toString());
-
-    var sessionLength = this.ss.length;
+    let sessionLength = this.ss.length;
     if (sessionLength <= 0) {
       this.ss.setItem(sku, qty.toString());
-      this.updateLittleCartIcon(qty);
+      this.updateCartIcon(qty);
       return;
     }
-    console.log(this.ss);
+    //console.log(this.ss);
     let newTotalQty = 0;
     let match = 0;
-
     for (let key in this.ss) {
-      if (key == sku.toString()) {
+      if (key == sku) {
         // console.log(`matched ${sku} and ${key}`);
+        /*converts the string to number as the current quantity is a string*/
         let oldQty = this.ss.getItem(key);
         oldQty = parseInt(oldQty);
         let newQty = oldQty + qty;
+        /*converts number back to string*/
         newQty = newQty.toString();
         this.ss.setItem(key, newQty);
         match = 1;
       }
-    }
+   }
+
+   /*If a match is not found a new key value is created and it udates the view*/
     if (match <= 0) {
       //console.log("new item to add - " + sku);
       this.ss.setItem(sku, qty.toString());
     }
+    /*evaluate the current quantities to receive a new total*/
     for (let i = 0; i < this.ss.length; i++) {
       let skuKey = this.ss.key(i);
       //console.log(skuKey);
@@ -46,17 +49,19 @@ export default class Cart {
       newTotalQty += parseInt(qtyValue);
     }
     //console.log(this.cartView);
-    this.updateLittleCartIcon(newTotalQty);
+    this.updateCartIcon(newTotalQty);
   }
 
-  updateLittleCartIcon(qty) {
-    //console.log(qty);
-      // let toCartView = {product: this.app.allProducts.productList,
-      // createItem: this.cartView.createItem,viewCart: this.cartView};
+  updateCartIcon(qty) {
+    /*object(this) is passed to the cartview by binding to event handling functio*/
+    console.log(this.app);
+      let toCartView = {products: this.app.allProducts.productList, createCartItem: this.cartView.createCartItem, viewCart: this.cartView, icon: this.updateCartIcon};
 
-       document.getElementById("numItemsParagraph").innerHTML = qty; /*quantity updates*/
+      /*shopping cart icon's quntity gets updated*/
+      document.getElementById("numItemsParagraph").innerHTML = qty;
+      document.getElementById("numItemsParagraph").style.display = 'block';
 
-      //  document.getElementById("numItemsParagraph").addEventListener("click", this.cartView.onClickOpenCart.bind(toCartView), false); /*opens cart view*/
-    }
-
+      /*opens cart view on clicking shopping cart icon*/
+      document.getElementById("numItemsParagraph").addEventListener("click", this.cartView.onClickOpenCartView.bind(toCartView), false);
   }
+}
